@@ -18,13 +18,13 @@ bool LightShader::Init(ID3D11Device* Device, HWND Hwnd)
 	wchar_t PsFilename[128];
 
 	int Error;
-	Error = wcscpy_s(VsFilename, 128, L"D:/source/cpp/directx/Engine/Shaders/light.vs");
+	Error = wcscpy_s(VsFilename, 128, L"D:/source/cpp/dx11engine/Engine/Shaders/light.vs");
 
 	if (Error != 0) {
 		return false;
 	}
 
-	Error = wcscpy_s(PsFilename, 128, L"D:/source/cpp/directx/Engine/Shaders/light.ps");
+	Error = wcscpy_s(PsFilename, 128, L"D:/source/cpp/dx11engine/Engine/Shaders/light.ps");
 
 	if (Error != 0) {
 		return false;

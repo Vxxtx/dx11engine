@@ -62,8 +62,8 @@ void Camera::Render()
 	LookAtVector = XMLoadFloat3(&LookAt);
 
 	Pitch = RotationX * 0.0174532925f;
-	Yaw = RotationX * 0.0174532925f;
-	Roll = RotationX * 0.0174532925f;
+	Yaw = RotationY * 0.0174532925f;
+	Roll = RotationZ * 0.0174532925f;
 
 	RotationMatrix = XMMatrixRotationRollPitchYaw(Pitch, Yaw, Roll);
 

@@ -1,4 +1,5 @@
 #include "Graphics.h"
+#include <iostream>
 
 Graphics::Graphics()
 {
@@ -32,8 +33,8 @@ bool Graphics::Init(int ScreenWidth, int ScreenHeight, HWND Hwnd)
 
 	G_Model = new Model;
 
-	strcpy_s(ModelFilename, "D:/source/cpp/directx/Engine/Data/Models/rpg.txt");
-	strcpy_s(TextureFilename, "D:/source/cpp/directx/Engine/Data/Textures/matti.tga");
+	strcpy_s(ModelFilename, "D:/source/cpp/dx11engine/Engine/Data/Models/rpg.txt");
+	strcpy_s(TextureFilename, "D:/source/cpp/dx11engine/Engine/Data/Textures/matti.tga");
 	bResult = G_Model->Init(Direct3D->GetDevice(), Direct3D->GetDeviceContext(), ModelFilename, TextureFilename);
 	
 	if (!bResult) {
@@ -95,6 +96,19 @@ void Graphics::Shutdown()
 
 bool Graphics::Frame(int MouseX, int MouseY)
 {
+	XMFLOAT3 CamRot = GetCamera()->GetRotation();
+
+	float NewCamRotationY = (float)(CamRot.y + (MouseX - LastMouseX));
+	if (NewCamRotationY <= 1.f && NewCamRotationY >= 0.f) {
+		NewCamRotationY = -359.f;
+	}
+		
+
+	LastMouseY - MouseY;
+	GetCamera()->SetRotation(0, NewCamRotationY, 0);
+	LastMouseX = MouseX;
+	LastMouseY = MouseY;
+
 	bool Result = Render();
 
 	if (!Result) {

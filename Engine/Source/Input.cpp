@@ -64,7 +64,7 @@ bool Input::Init(HINSTANCE HInstance, HWND Hwnd, int InScreenWidth, int InScreen
 		return false;
 	}
 
-	Result = Mouse->SetCooperativeLevel(Hwnd, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
+	Result = Mouse->SetCooperativeLevel(Hwnd, DISCL_FOREGROUND | DISCL_EXCLUSIVE);
 
 	if (FAILED(Result)) {
 		return false;
@@ -150,6 +150,8 @@ void Input::ProcessInput()
 {
 	MouseX += MouseState.lX;
 	MouseY += MouseState.lY;
+
+
 
 	if (MouseX < 0) MouseX = 0;
 	if (MouseY < 0) MouseY = 0;
