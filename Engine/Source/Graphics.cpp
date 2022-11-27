@@ -1,5 +1,7 @@
 #include "Graphics.h"
 #include <iostream>
+#include <windows.h>
+#include <string>
 
 Graphics::Graphics()
 {
@@ -29,7 +31,7 @@ bool Graphics::Init(int ScreenWidth, int ScreenHeight, HWND Hwnd)
 	}
 
 	G_Camera = new Camera;
-	G_Camera->SetPosition(0.f, 0.f, -105.f);
+	G_Camera->SetPosition(0.f, 0.f, -135.f);
 
 	G_Model = new Model;
 
@@ -94,21 +96,8 @@ void Graphics::Shutdown()
 	}
 }
 
-bool Graphics::Frame(int MouseX, int MouseY)
+bool Graphics::Frame(int LastMouseX, int LastMouseY)
 {
-	XMFLOAT3 CamRot = GetCamera()->GetRotation();
-
-	float NewCamRotationY = (float)(CamRot.y + (MouseX - LastMouseX));
-	if (NewCamRotationY <= 1.f && NewCamRotationY >= 0.f) {
-		NewCamRotationY = -359.f;
-	}
-		
-
-	LastMouseY - MouseY;
-	GetCamera()->SetRotation(0, NewCamRotationY, 0);
-	LastMouseX = MouseX;
-	LastMouseY = MouseY;
-
 	bool Result = Render();
 
 	if (!Result) {

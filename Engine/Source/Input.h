@@ -22,6 +22,8 @@ public:
 	bool Frame();
 
 	bool IsEscapePressed();
+	bool IsKeyPressed(short);
+
 	void GetMouseLocation(int& MouseX, int& MouseY);
 
 private:
@@ -38,6 +40,9 @@ private:
 
 	int ScreenWidth, ScreenHeight;
 	int MouseX, MouseY;
+
+public:
+	inline void GetLastMouseLocation(int& OutX, int& OutY) { OutX = MouseState.lX; OutY = MouseState.lY; };
 };
 
 #endif

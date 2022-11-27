@@ -148,16 +148,8 @@ bool Input::ReadMouse()
 
 void Input::ProcessInput()
 {
-	MouseX += MouseState.lX;
-	MouseY += MouseState.lY;
-
-
-
-	if (MouseX < 0) MouseX = 0;
-	if (MouseY < 0) MouseY = 0;
-
-	if (MouseX > ScreenWidth) MouseX = ScreenWidth;
-	if (MouseY > ScreenHeight) MouseY = ScreenHeight;
+	MouseX = ScreenWidth / 2;
+	MouseY = ScreenHeight / 2;
 }
 
 bool Input::IsEscapePressed()
@@ -166,6 +158,14 @@ bool Input::IsEscapePressed()
 		return true;
 	}
 
+	return false;
+}
+
+bool Input::IsKeyPressed(short Key)
+{
+	if (KeyboardState[Key] & 0x80) {
+		return true;
+	}
 	return false;
 }
 

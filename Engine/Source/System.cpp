@@ -2,8 +2,6 @@
 
 System::System()
 {
-    InputHandler = 0;
-    GraphicsHandler = 0;
 }
 
 System::System(const System& Other)
@@ -39,6 +37,14 @@ bool System::Init()
         return false;
     }
 
+    PlayerCharacter = new Player(InputHandler, GraphicsHandler->GetCamera());
+    bResult = PlayerCharacter->Init();
+
+    if (!bResult) {
+        MessageBox(Hwnd, L"Could not initialize player character", L"Error", MB_OK);
+        return false;
+    }
+
     return true;
 }
 
@@ -54,6 +60,12 @@ void System::Shutdown()
         InputHandler->Shutdown();
         delete InputHandler;
         InputHandler = nullptr;
+    }
+
+    if (PlayerCharacter) {
+        PlayerCharacter->Shutdown();
+        delete PlayerCharacter;
+        PlayerCharacter = nullptr;
     }
 
     ShutdownWindows();
@@ -107,9 +119,15 @@ bool System::Frame()
         return false;
     }
 
-    InputHandler->GetMouseLocation(MouseX, MouseY);
+    InputHandler->GetLastMouseLocation(MouseX, MouseY);
 
     bResult = GraphicsHandler->Frame(MouseX, MouseY);
+
+    if (!bResult) {
+        return false;
+    }
+
+    bResult = PlayerCharacter->Frame();
 
     if (!bResult) {
         return false;

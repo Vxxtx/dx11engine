@@ -9,6 +9,7 @@
 
 #include "Input.h"
 #include "Graphics.h"
+#include "Player.h"
 
 class System
 {
@@ -32,8 +33,9 @@ private:
 	HINSTANCE HInstance;
 	HWND Hwnd;
 
-	Input* InputHandler;
-	Graphics* GraphicsHandler;
+	Input* InputHandler{ nullptr };
+	Graphics* GraphicsHandler{ nullptr };
+	Player* PlayerCharacter{ nullptr };
 };
 
 static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);

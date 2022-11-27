@@ -36,8 +36,6 @@ private:
 
 	LightShader* G_LightShader{ nullptr };
 	Light* G_Light{ nullptr };
-	
-	int LastMouseX{ 0 }, LastMouseY{ 0 };
 
 public:
 	inline Camera* GetCamera() { return G_Camera; };
