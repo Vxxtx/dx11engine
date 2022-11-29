@@ -19,7 +19,7 @@ float4 LightPixelShader(PixelInputType Input) : SV_TARGET {
 	float LightIntensity = saturate(dot(Input.Normal, LightDir));
 
 	float4 Color = saturate(DiffuseColor * LightIntensity);
-	//Color = Color * TextureColor;
+	Color = Color * TextureColor;
 
 	return Color;
 }

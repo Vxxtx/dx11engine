@@ -58,6 +58,9 @@ private:
 	Texture* Tex{ nullptr };
 
 	ModelType* ModelData{ nullptr };
+
+public:
+	XMFLOAT3 Position{ 0.f, 0.f, 0.f, };
 };
 
 #endif

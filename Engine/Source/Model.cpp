@@ -68,8 +68,9 @@ bool Model::InitBuffers(ID3D11Device* Device)
 	Vertices = new VertexType[VertexCount];
 	Indices = new unsigned long[IndexCount];
 
+	// Model world position is also added here. 
 	for (int i = 0; i < VertexCount; i++) {
-		Vertices[i].Position = XMFLOAT3(ModelData[i].X, ModelData[i].Y, ModelData[i].Z);
+		Vertices[i].Position = XMFLOAT3(ModelData[i].X + Position.x, ModelData[i].Y + Position.y, ModelData[i].Z + Position.z);
 		Vertices[i].Texture = XMFLOAT2(ModelData[i].U, ModelData[i].V);
 		Vertices[i].Normal = XMFLOAT3(ModelData[i].NX, ModelData[i].NY, ModelData[i].NZ);
 
